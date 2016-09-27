@@ -1,4 +1,11 @@
+<?php
 
+// Check if customer is logged in
+session_start();
+if (! isset($_SESSION_['customer_id'])) {
+    header("Location: login.php");
+}
+?>
 <html>
     <head>
         <meta charset="utf-8">

@@ -8,3 +8,10 @@ define("DATABASE_ENV", [
     'username' => 'root',
     'password' => 'password'
 ]);
+
+function check_customer_session() {
+    session_start();
+    if (isset($_SESSION['customer_id'])) {
+        header("Location: booking.php");
+    }
+}
