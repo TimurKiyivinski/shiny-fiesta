@@ -1,6 +1,7 @@
 <?php
 
 include('index.php');
+include('models/customer.php');
 include('models/booking.php');
 
 // Check if customer is logged in
@@ -8,6 +9,8 @@ session_start();
 if (! isset($_SESSION['customer_id'])) {
     header("Location: login.php");
 }
+
+$customer = Customer::find($_SESSION['customer_id']);
 
 // Check if user submitted form data
 if (isset($_POST['name']) &&
@@ -64,6 +67,9 @@ if (isset($_POST['name']) &&
         <link rel="stylesheet" type="text/css" href="css/app.css"/>
     </head>
     <body>
+        <?php if ($customer->role === "admin") { ?>
+        <a href="admin.php" class="admin">Admin</a>
+        <?php } ?>
         <a href="logout.php" class="logout">Log Out</a>
         <h1>Book a cab</h1>
         <p class="instruction">Please fill the fields to book a cab</p>

@@ -35,6 +35,28 @@ input:focus {
     border: none;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+}
+
+tr:nth-of-type(odd) {
+    background: #bdbdbd;
+}
+
+th {
+    background: #333;
+    color: white;
+    font-weight: bold;
+}
+
+td, th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
 button {
     background: white;
     font-size: 16px;
@@ -44,10 +66,27 @@ button {
     float: right;
 }
 
+.nofloat {
+    float: none;
+}
+
 .logout {
     position: fixed;
     top: 12px;
     right: 12px;
+    color: white;
+    background: #757575;
+    font-size: 16px;
+    border: 1px solid #616161;
+    border-radius: 8px;
+    padding: 8px;
+    float: right;
+}
+
+.admin {
+    position: fixed;
+    top: 12px;
+    left: 12px;
     color: white;
     background: #757575;
     font-size: 16px;
