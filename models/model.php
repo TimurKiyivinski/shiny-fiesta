@@ -30,10 +30,10 @@ class Model {
     // Run query and return calling class or list
     public static function exec($query) {
         $db = new mysqli(
-            $env['host'],
-            $env['username'],
-            $env['password'],
-            $env['database']
+            DATABASE_ENV['host'],
+            DATABASE_ENV['username'],
+            DATABASE_ENV['password'],
+            DATABASE_ENV['database']
         );
 
         if ($db->connect_errno > 0) {
