@@ -44,6 +44,19 @@ button {
     float: right;
 }
 
+.logout {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    color: white;
+    background: #757575;
+    font-size: 16px;
+    border: 1px solid #616161;
+    border-radius: 8px;
+    padding: 8px;
+    float: right;
+}
+
 .instruction {
     color: #616161;
     font-style: italic;
@@ -52,4 +65,9 @@ button {
 .error {
     color: #f44336;
     font-style: italic;
+}
+
+.message {
+    color: #4caf50;
+    font-style: bold;
 }
