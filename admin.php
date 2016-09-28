@@ -26,6 +26,7 @@ if (isset($_POST['reference'])) {
 function nearby_bookings() {
     $bookings = [];
     $get_bookings =  (new Booking)->where('assigned', 'unassigned')->get();
+    // Sort bookings into an array based on what the model returns
     if (count($get_bookings) == 1) {
         if (! is_object($get_bookings)) {
             return [];
@@ -37,13 +38,16 @@ function nearby_bookings() {
         return [];
     }
 
+    // Create array for nearby bookings
     $near_bookings = [];
     foreach ($bookings as $booking) {
         $now = new DateTime();
         $pickup_time = new DateTime($booking->date . " " . $booking->time);
         $time_diff = $pickup_time->diff($now);
+        // Only add pickups in under 3 hours from now
         if ($time_diff->h < 3) {
             $booking->customer = Customer::find($booking->customer_id);
+            // Format address
             if (empty($booking->unit_number)) {
                 $booking->address = $booking->unit_number . "/" . $booking->street_number;
             } else {
