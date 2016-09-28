@@ -5,8 +5,11 @@ class Booking extends Model {
         $booking = new Booking();
 
         // Check if unit number is valid
-        if (! empty($address['unit_number']) && filter_var($address['unit_number'], FILTER_VALIDATE_INT)) {
-            throw new Exception("Invalid unit number");
+        if (! empty($address['unit_number'])) {
+            echo "unit number is " . $address['unit_number'];
+            if (! filter_var($address['unit_number'], FILTER_VALIDATE_INT)) {
+                throw new Exception("Invalid unit number");
+            }
         }
 
         // Check if street number is valid
