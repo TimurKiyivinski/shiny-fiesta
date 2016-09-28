@@ -24,7 +24,19 @@ if (isset($_POST['reference'])) {
 }
 
 function nearby_bookings() {
-    $bookings =  (new Booking)->where('assigned', 'unassigned')->get();
+    $bookings = [];
+    $get_bookings =  (new Booking)->where('assigned', 'unassigned')->get();
+    if (count($get_bookings) == 1) {
+        if (! is_object($get_bookings)) {
+            return [];
+        }
+        $bookings[] = $get_bookings;
+    } else if (count($get_bookings) > 1) {
+        $bookings = $get_bookings;
+    } else {
+        return [];
+    }
+
     $near_bookings = [];
     foreach ($bookings as $booking) {
         $now = new DateTime();
@@ -54,9 +66,7 @@ function nearby_bookings() {
         <link rel="stylesheet" type="text/css" href="css/app.css"/>
     </head>
     <body>
-        <?php if ($customer->role === "admin") { ?>
-        <a href="admin.php" class="admin">Admin</a>
-        <?php } ?>
+        <a href="booking.php" class="admin">Book</a>
         <a href="logout.php" class="logout">Log Out</a>
         <h1>CabsOnline Admin Page</h1>
         <h3>1. Click button to search for all unassigned booking requests in the next 2 hours</h3>

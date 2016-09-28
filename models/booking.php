@@ -5,7 +5,7 @@ class Booking extends Model {
         $booking = new Booking();
 
         // Check if unit number is valid
-        if (! filter_var($address['unit_number'], FILTER_VALIDATE_INT)) {
+        if (! empty($address['unit_number']) && filter_var($address['unit_number'], FILTER_VALIDATE_INT)) {
             throw new Exception("Invalid unit number");
         }
 
@@ -47,7 +47,7 @@ class Booking extends Model {
         $booking->date = $pickup['date'];
         $booking->time = $pickup['time'];
         $booking->assigned = "unassigned";
-        //$booking->save();
+        $booking->save();
 
         return $booking;
     }
